@@ -1,0 +1,17 @@
+Config { font         = "-misc-inconsolata-medium-r-normal--0-0-0-0-p-0-iso8859-1"
+       , bgColor      = "#222222"
+       , fgColor      = "grey"
+       , border       = NoBorder
+       , borderColor  = "#bb00dd"
+       , position     = Top
+       , lowerOnStart = True
+       , commands     = [ Run StdinReader
+			, Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+
+			]
+       , sepChar      = "%"
+       , alignSep     = "}{"
+       , template     = "%StdinReader% }{  %date%"
+       }
+
+ 

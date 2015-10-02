@@ -1,0 +1,16 @@
+Config { font         = "xft:inconsolata:size=10:antialias=true"
+       , bgColor      = "#222222"
+       , fgColor      = "grey"
+       , border       = NoBorder
+       , borderColor  = "#bb00dd"
+      -- , position     = Static { xpos=1 , ypos=1, width=1310, height=11 }
+       , position     = Bottom
+       , lowerOnStart = True
+       , commands     = [ Run StdinReader
+			]
+       , sepChar      = "%"
+       , alignSep     = "}{"
+       , template     = "%StdinReader%"
+       }
+
+ 

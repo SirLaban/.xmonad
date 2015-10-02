@@ -1,0 +1,1 @@
+fromList [("Run: ",["mupdf /home/lars/Documents/book.pdf","gftp","mucommander","putty","xpdf","mupdf","transmission-gtk","transmission-gtk","transmission-gtk","xterm"])]

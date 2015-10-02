@@ -1,0 +1,6 @@
+ cd /home/lars/.xmonad/.git
+xmonad.o
+xmonad.hi
+xmonad.errors
+xmonad-x86_64-freebsd
+fontconfig
