@@ -5,6 +5,8 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.LayoutHints
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spiral
+import XMonad.Layout.SimpleFloat
+import XMonad.Layout.Tabbed
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Util.Run(spawnPipe)
@@ -72,6 +74,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_f        ), spawn "firefox"             )
     , ((modMask              , xK_x        ), spawn "xchat"             )
     , ((modMask              , xK_g        ), spawn "grdesktop"          )
+    , ((modMask              , xK_r        ), spawn "remmina"          )
     , ((0                    , 0x1008ff13  ), spawn "rexima vol +")
     , ((0                    , 0x1008ff11  ), spawn "rexima vol -")
 --    , ((0                    , 0x1008ff12  ), spawn "/home/lars/.xmonad/scripts/aumix-mute-toogle.sh")
@@ -95,7 +98,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     ++
 
     [((m .|. modMask, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        | (key, sc) <- zip [xK_w, xK_e] [0..]
+--        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
@@ -106,7 +110,7 @@ myMouseBindings (XConfig {XMonad.modMask = modMask}) = M.fromList $
                                           >> windows W.shiftMaster))
     ]
 
-myLayout = avoidStruts $ layoutHints (tall ||| Mirror tall ||| spiral (6/7)  ||| Full)
+myLayout = avoidStruts $ layoutHints (tall ||| Mirror tall ||| spiral (6/7)  ||| Full ||| simpleTabbed ||| simpleFloat)
   where
      tall = ResizableTall nmaster delta ratio []
      nmaster = 1
@@ -116,6 +120,7 @@ myLayout = avoidStruts $ layoutHints (tall ||| Mirror tall ||| spiral (6/7)  |||
 myManageHook :: ManageHook
 myManageHook = composeAll
     [ className =? "grdesktop"    --> doShift "5:Rdp"
+    , className =? "Remmina"    --> doShift "5:Rdp"
     , className =? "Chrome" --> doShift "2:Web"
     , className =? "Firefox" --> doShift "2:Web"
     , className =? "Midori" --> doShift "2:Web"
