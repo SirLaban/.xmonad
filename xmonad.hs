@@ -7,6 +7,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spiral
 import XMonad.Layout.SimpleFloat
 import XMonad.Layout.Tabbed
+import XMonad.Layout.PerWorkspace (onWorkspace)
 import XMonad.Prompt
 import XMonad.Prompt.Shell
 import XMonad.Util.Run(spawnPipe)
@@ -28,7 +29,7 @@ main = do
            $ defaultConfig {
                 terminal           = "urxvt",
                 modMask            = mod4Mask,
-                workspaces         = ["1:Terms", "2:Web", "3:Code", "4:Chat", "5:Rdp", "6", "7", "8:Torrents", "9:Music"],
+                workspaces         = ["1:Terms", "2:Web", "3:Code", "4:Chat", "5:Rdp", "6", "7:Tor", "8:Torrents", "9:Music"],
                 normalBorderColor  = "#333333",
                 focusedBorderColor = "#3399cc",
                 manageHook         = myManageHook,
@@ -72,6 +73,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_b        ), spawn "midori"             )
     , ((modMask              , xK_c        ), spawn "chrome"             )
     , ((modMask              , xK_f        ), spawn "firefox"             )
+    , ((modMask              , xK_s        ), spawn "~/bin/startsurf"             )
     , ((modMask              , xK_x        ), spawn "xchat"             )
     , ((modMask              , xK_g        ), spawn "grdesktop"          )
     , ((modMask              , xK_r        ), spawn "remmina"          )
@@ -160,6 +162,7 @@ help = unlines ["My modifier key is 'win'. Mykeybindings:",
     "mod+b                   Midori",
     "mod+c                   Chromeium",
     "mod+f                   Firefox",
+    "mod+s                   Surf Browser",
     "mod+x                   Xchat",
     "mod+g                   Grdesktop",
     "mod+r                   Remmina",
